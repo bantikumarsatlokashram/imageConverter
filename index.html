@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKPK IMAGE CONVERTER</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+     
+    <meta name="description" content="Convert any image format to another quickly, easily, and for free with BKPK IMAGE CONVERTER. Supports PNG, JPEG, SVG, AI, PSD, and more!">
+    <meta name="keywords" content="image converter, free image converter, convert PNG to JPEG, convert AI to PSD, online image conversion, bulk image converter">
+    <meta property="og:title" content="BKPK IMAGE CONVERTER - Convert Any Image Format for Free" />
+    <meta property="og:description" content="Easily convert images between different formats including PNG, JPEG, SVG, AI, PSD, and more. No software needed!" />
+    <meta property="og:url" content="https://www.bkpkvideo.com/tools/imageConverter" />
+    <meta property="og:site_name" content="BKPK VIDEO" />
+    <meta property="og:image" content="https://www.bkpkvideo.com/tools/imageConverter/imageConverter.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BKPKVIDEO" />
+    <meta name="google-site-verification" content="googlebd28a36d7e7297aa" />
+    <meta name="yandex-verification" content="30bdf7179f639924" />
+    <meta name='robots' content='index, max-image-preview:large' />
+    <meta property="fb:app_id" content="730845160831987" />
+    <meta property="facebook-domain-verification" content="bwfynb8ox1kb2y7vhq1iydkp0bnb52" />
+    <link rel="icon" href="https://www.bkpkvideo.com/wp-content/uploads/2022/01/cropped-BKPKVIDEO-app-icon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://www.bkpkvideo.com/wp-content/uploads/2022/01/cropped-BKPKVIDEO-app-icon-192x192.png" sizes="192x192" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>BKPK IMAGE CONVERTER - Free Online Image Format Converter</title>
+    <script type="application/ld+json">{
+    "@context": "https://schema.org/",
+    "@type": "CreativeWorkSeries",
+    "name": "BKPK IMAGE CONVERTER - Convert Any Image Format Online",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "ratingCount": "776789"
+    }
+}</script>
+</head>
+<body>
+    <section class="hero is-medium custom-hero">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title has-text-white is-1 mb-6">
+                    BKPK IMAGE CONVERTER
+                </h1>
+                <p class="subtitle has-text-white is-4">
+                    Convert Any Image Format to Any Image Format for Free and Unlimited
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="box main-container">
+                <div class="upload-container">
+                    <div class="drop-zone has-text-centered" id="drop-zone">
+                        <div class="content">
+                            <i class="fas fa-cloud-upload-alt fa-4x mb-4"></i>
+                            <h3 class="is-size-4 mb-4">Drag & Drop Your Images Here</h3>
+                            <p class="mb-4">or</p>
+                            <div class="file is-centered">
+                                <label class="file-label">
+                                    <input class="file-input" type="file" id="file-input" multiple 
+                                           accept=".gif,.jpg,.jpeg,.tiff,.bmp,.eps,.svg,.png,.webp,.heif,.ai,.psd,.pdf,.raw,.indd,.avif,.dib,.exif">
+                                    <span class="button custom-button">
+                                        <span class="icon">
+                                            <i class="fas fa-upload"></i>
+                                        </span>
+                                        <span>Choose Files</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <p class="mt-4 supported-formats">
+                                Supported formats: GIF, JPEG, TIFF, BMP, EPS, SVG, PNG, WebP, HEIF, AI, PSD, PDF, RAW, INDD, AVIF, DIB, EXIF
+                            </p>
+                            <p class="file-limit">Upload up to 100 images at once</p>
+                        </div>
+                    </div>
+
+                    <div id="file-list" class="mt-5" style="display: none;">
+                        <h4 class="title is-4 mb-4">Selected Files</h4>
+                        <div class="selected-files"></div>
+                    </div>
+
+                    <div id="conversion-options" class="mt-5" style="display: none;">
+                        <div class="field">
+                            <label class="label">Select Output Format:</label>
+                            <div class="control has-icons-left">
+                                <input type="text" class="input" id="format-search" placeholder="Search format...">
+                                <span class="icon is-left">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <div class="format-list mt-3">
+                                <div class="columns is-multiline" id="format-grid">
+                                    <!-- Format options will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="convert-button-container" class="mt-4" style="display: none;">
+                        <button class="button is-fullwidth custom-button" id="convert-btn">
+                            <span class="icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </span>
+                            <span>Convert to <span id="selected-format"></span></span>
+                        </button>
+                    </div>
+
+                    <div id="progress-container" class="mt-5" style="display: none;">
+                        <p class="has-text-centered mb-3" id="progress-text">Converting...</p>
+                        <progress class="progress custom-progress" value="0" max="100"></progress>
+                        <p class="has-text-centered mt-2" id="progress-details"></p>
+                    </div>
+
+                    <div id="download-container" class="mt-5" style="display: none;">
+                        <!-- Single file download button -->
+                        <button class="button is-fullwidth is-success mb-3" id="download-single-btn" style="display: none;">
+                            <span class="icon">
+                                <i class="fas fa-download"></i>
+                            </span>
+                            <span>Download <span id="single-file-format"></span> File</span>
+                        </button>
+                        
+                        <!-- Multiple files download button -->
+                        <button class="button is-fullwidth is-success" id="download-zip-btn" style="display: none;">
+                            <span class="icon">
+                                <i class="fas fa-file-archive"></i>
+                            </span>
+                            <span>Download All Converted Files as ZIP</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--FAQ Section -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let faqItems = document.querySelectorAll(".faq-item");
+    
+            faqItems.forEach(item => {
+                let question = item.querySelector(".faq-question");
+                let answer = item.querySelector(".faq-answer");
+                let icon = question.querySelector(".icon");
+    
+                question.addEventListener("click", function () {
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.style.transform = "rotate(0deg)";
+                    } else {
+                        document.querySelectorAll(".faq-answer").forEach(ans => ans.style.maxHeight = null);
+                        document.querySelectorAll(".icon").forEach(ic => ic.style.transform = "rotate(0deg)");
+                        
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        icon.style.transform = "rotate(180deg)";
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is BKPK Image Converter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BKPK Image Converter is a free online tool that allows users to convert images between different formats quickly and easily."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What image formats does BKPK Image Converter support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool supports GIF, JPEG, TIFF, BMP, EPS, SVG, PNG, WebP, HEIF, AI, PSD, PDF, RAW, INDD, AVIF, DIB, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I convert an image?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply drag and drop or upload your image, select the desired output format, and click 'Convert'. The converted file will be available for download."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="faq-container">
+                <h2 class="title faq-title">Frequently Asked Questions (FAQ)</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is BKPK Image Converter?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        BKPK Image Converter is a free online tool that allows users to convert images between different formats quickly and easily.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What image formats does BKPK Image Converter support?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        The tool supports GIF, JPEG, TIFF, BMP, EPS, SVG, PNG, WebP, HEIF, AI, PSD, PDF, RAW, INDD, AVIF, DIB, and more.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I convert an image?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Simply drag and drop or upload your image, select the desired output format, and click "Convert". The converted file will be available for download.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is BKPK Image Converter free to use?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, BKPK Image Converter is completely free with no hidden charges or limitations.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a limit on how many images I can convert?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        You can upload up to 100 images at once, but there is no limit on the total number of conversions.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need to install any software?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        No, BKPK Image Converter is a web-based tool that works directly in your browser.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I use BKPK Image Converter on my mobile phone?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, the tool is mobile-friendly and works on any device with an internet browser.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens to my uploaded images?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        All uploaded images are deleted automatically after processing to ensure your privacy.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I convert multiple images at once?
+                        <span class="icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, BKPK Image Converter supports batch conversion of up to 100 images.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section --> 
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>BKPK IMAGE CONVERTER</strong> - Convert images easily and for free.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
